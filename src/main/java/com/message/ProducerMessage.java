@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
  * @Desciption:
  */
 
-@Component
 @Slf4j
+@Component
 public class ProducerMessage {
 
     @Autowired
@@ -25,6 +25,6 @@ public class ProducerMessage {
 
         log.info("sending key='{}' to valye='{}'", key,value);
 
-        kafkaTemplate.send("gas",0, "message",value);// "message"
+        kafkaTemplate.send(topic,partition, key,value);// "message"
     }
 }

@@ -26,14 +26,14 @@ public class GasEventController {
     GasEventService gasEventService;
 
     @RequestMapping("/add")
-    public Object addEvent(GasEvent gasEvent){
+    public String addEvent(GasEvent gasEvent){
         try {
             gasEventService.process(gasEvent);
         } catch (Exception e) {
             log.error(e.getMessage());
-            return new HashMap<String, String>().put("fail","false");
+            return "fail";
         }
-        return new HashMap<String, String>().put("success","true");
+        return "success";
     }
 
 }

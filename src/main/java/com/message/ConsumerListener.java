@@ -3,6 +3,7 @@ package com.message;
 import com.entity.GasEvent;
 import com.google.gson.Gson;
 import com.service.InfluxdbSerice;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+@Slf4j
 public class ConsumerListener {
 
     @Autowired
@@ -26,9 +28,9 @@ public class ConsumerListener {
 
     @KafkaListener(topics = "gas")
     public void consumer(String message){
-        System.out.println("---------------message------------------");
+        log.info("---------------message------------------");
         GasEvent gasEvent = gson.fromJson(message,GasEvent.class);
-        System.out.println(gasEvent.toString());
+        log.info(gasEvent.toString());
 
         //写入influxdb
         influxdbSerice.insert(gasEvent,"gas_");

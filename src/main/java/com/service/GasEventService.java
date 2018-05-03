@@ -9,6 +9,6 @@ import com.entity.GasEvent;
  */
 public interface GasEventService {
 
-    Integer process(GasEvent event) throws Exception;
+    void process(GasEvent event);
 
 }

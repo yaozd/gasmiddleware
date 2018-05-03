@@ -24,14 +24,14 @@ public class GasEventServiceImpl implements GasEventService {
     InfluxdbSerice influxdbSerice;
 
     @Autowired
-    private ProducerMessage producer;
+    private ProducerMessage producerMessage;
 
     Gson gson = new Gson();
 
+
     @Async
     @Override
-    public Integer process(GasEvent gasEvent) throws Exception {
-        producer.send("gas",0,"message",gson.toJson(gasEvent));
-        return null;
+    public void process(GasEvent gasEvent){
+        producerMessage.send("gas",0,"message",gson.toJson(gasEvent));
     }
 }

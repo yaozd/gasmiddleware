@@ -49,7 +49,6 @@ public class InfluxdbSericeImpl implements InfluxdbSerice {
                 .addField("ac220",gasEvent.getAc220())
                 .addField("battery",gasEvent.getBattery())
                 .addField("solar",gasEvent.getSolar())
-                .addField("pointtime",gasEvent.getPointtime())
                 .build();
          influxDBTemplate.write(point);
     }

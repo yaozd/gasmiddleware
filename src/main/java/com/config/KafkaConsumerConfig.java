@@ -41,7 +41,7 @@ public class KafkaConsumerConfig {
 
         props.put(ConsumerConfig.GROUP_ID_CONFIG, consumerGroupId);
         // maximum records per poll
-        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "3");
+  //      props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "3");
 //        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
 
 
