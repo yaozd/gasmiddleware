@@ -1,5 +1,6 @@
 package com.config;
 
+
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +23,7 @@ import java.util.Map;
 
 @Configuration
 @EnableKafka
-public class ConsumerConfig {
+public class KafkaConsumerConfig {
 
     @Value("${kafka.bootstrap-servers}")
     private String bootstrapServers;
