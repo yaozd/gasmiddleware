@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @Author: RenQiQiang
  * @Date: 2018-05-03 15:53
  * @Desciption:
+ * Influxdb的服务实现
  */
 @Service
 public class InfluxdbSericeImpl implements InfluxdbSerice {
@@ -52,5 +53,4 @@ public class InfluxdbSericeImpl implements InfluxdbSerice {
                 .build();
          influxDBTemplate.write(point);
     }
-
 }
