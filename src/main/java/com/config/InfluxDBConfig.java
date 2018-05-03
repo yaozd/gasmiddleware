@@ -45,6 +45,7 @@ public class InfluxDBConfig
          */
         return new DefaultInfluxDBTemplate(connectionFactory);
     }
+
 }
 
 
