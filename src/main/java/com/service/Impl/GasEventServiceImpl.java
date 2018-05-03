@@ -6,8 +6,7 @@ import com.message.ProducerMessage;
 import com.service.GasEventService;
 import com.service.InfluxdbSerice;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.kafka.core.KafkaTemplate;
+
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +22,6 @@ public class GasEventServiceImpl implements GasEventService {
     //同级调用
     @Autowired
     InfluxdbSerice influxdbSerice;
-
-    @Value("${kafka.topic}")
-    private String topic;
 
     @Autowired
     private ProducerMessage producer;
