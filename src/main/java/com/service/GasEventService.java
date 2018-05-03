@@ -1,7 +1,6 @@
 package com.service;
 
 import com.entity.GasEvent;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @Author: RenQiQiang
