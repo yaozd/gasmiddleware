@@ -1,7 +1,9 @@
 package com.message;
 
 import com.entity.GasEvent;
+import com.entity.GasHazelcast;
 import com.google.gson.Gson;
+import com.service.HazelcastService;
 import com.service.InfluxdbSerice;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -24,6 +26,9 @@ public class ConsumerListener {
     @Autowired
     InfluxdbSerice influxdbSerice;
 
+    @Autowired
+    HazelcastService hazelcastService;
+
     Gson gson = new Gson();
 
     @KafkaListener(topics = "gas")
@@ -32,10 +37,17 @@ public class ConsumerListener {
         GasEvent gasEvent = gson.fromJson(message,GasEvent.class);
         log.info(gasEvent.toString());
 
+        String tenlentId = hazelcastService.getTenlent(gasEvent.getHardwareId());
         //写入influxdb
-        influxdbSerice.insert(gasEvent,"gas_");
+        //标记为gas_tenlentId
+        influxdbSerice.insert(gasEvent,"gas_"+tenlentId);
 
         //todo 写入缓存
+        GasHazelcast gasHazelcast = new GasHazelcast();
+        gasHazelcast.setTenantId(tenlentId);
+        gasHazelcast.setGasEvent(gasEvent);
+        hazelcastService.add2List(gasHazelcast);
+
     }
 
 //     implements MessageListener<String,String>
